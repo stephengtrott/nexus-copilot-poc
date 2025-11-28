@@ -5,38 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nexus Co-Pilot</title>
 
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: #fafafa;
     }
 
-    /* Minimal password screen */
+    /* Modern password screen */
     #password-screen {
-      max-width: 300px;
+      max-width: 320px;
       margin: 20vh auto 0 auto;
       text-align: center;
+      padding: 2rem;
+      box-sizing: border-box;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    #password-screen h2 {
+      margin: 0 0 1rem 0;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: #111;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-top: 1rem;
+      border: 1px solid #d0d0d0;
+      border-radius: 10px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      outline: none;
+      transition: border 0.15s ease;
+    }
+
+    .input-field:focus {
+      border-color: #4a74ff;
+    }
+
+    .button-modern {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      background: #4a74ff;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .button-modern:hover {
+      background: #3b5fe0;
     }
 
     #password-error {
-      color: red;
+      color: #d33;
       display: none;
-      margin-top: 0.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
     }
 
     /* Chatbot container */
+    #chat-container {
+      display: none; 
+    }
+
     .iframe-wrapper {
       max-width: 800px;
       margin: 0 auto;
-      height: 100vh;      /* fill viewport height */
-      display: none;      /* shown after password */
+      padding: 0.5rem;
       box-sizing: border-box;
     }
 
     iframe {
       width: 100%;
-      height: 100%;       /* fill wrapper, which is 100vh */
+      height: 100vh;
       border: 0;
     }
   </style>
@@ -46,29 +100,33 @@
 
   <!-- Password prompt -->
   <div id="password-screen">
-    <p>Please enter the password</p>
-    <input id="password-input" type="password" />
-    <button id="password-submit">Enter</button>
+    <h2>Enter Password</h2>
+    <input id="password-input" type="password" class="input-field" placeholder="Password" />
+    <button id="password-submit" class="button-modern">Continue</button>
     <div id="password-error">Incorrect password</div>
   </div>
 
   <!-- Chatbot iframe -->
-  <div class="iframe-wrapper" id="chat-container">
-    <iframe src="https://www.chatbase.co/chatbot-iframe/Mrw2_1-uFFkSRItDoiIY0"></iframe>
+  <div id="chat-container">
+    <div class="iframe-wrapper">
+      <iframe src="https://www.chatbase.co/chatbot-iframe/Mrw2_1-uFFkSRItDoiIY0"></iframe>
+    </div>
   </div>
 
   <script>
+    const PASSWORD = "staycurious";
+
     const input = document.getElementById("password-input");
     const button = document.getElementById("password-submit");
     const error = document.getElementById("password-error");
-    const screen = document.getElementById("password-screen");
-    const iframeWrapper = document.getElementById("chat-container");
+    const passwordScreen = document.getElementById("password-screen");
+    const chatContainer = document.getElementById("chat-container");
 
     function checkPassword() {
-      const entered = input.value.trim().toLowerCase();
-      if (entered === "staycurious") {
-        screen.style.display = "none";
-        iframeWrapper.style.display = "block";
+      const entered = input.value.trim();
+      if (entered === PASSWORD) {
+        passwordScreen.style.display = "none";
+        chatContainer.style.display = "block";
       } else {
         error.style.display = "block";
       }
@@ -76,17 +134,14 @@
 
     button.addEventListener("click", checkPassword);
 
-    input.addEventListener("keypress", (e) => {
+    input.addEventListener("keypress", function(e) {
       if (e.key === "Enter") {
         checkPassword();
       }
     });
 
-    // Hide error when user starts typing again
-    input.addEventListener("input", () => {
-      if (error.style.display === "block") {
-        error.style.display = "none";
-      }
+    input.addEventListener("input", function () {
+      error.style.display = "none";
     });
   </script>
 
