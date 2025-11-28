@@ -52,22 +52,28 @@
     }
 
     .button-modern {
-      width: 100%;
-      margin-top: 1rem;
-      padding: 0.75rem 1rem;
-      background: #4a74ff;
-      color: white;
-      font-size: 1rem;
-      font-weight: 500;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.15s ease;
-    }
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #1B7498;        /* static */
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
 
-    .button-modern:hover {
-      background: #3b5fe0;
-    }
+/* Hover: slightly lighter + brighter */
+.button-modern:hover {
+  background: #218ABD;        /* adjusted hover tone */
+}
+
+/* Active/Click: slightly darker + deeper */
+.button-modern:active {
+  background: #165C77;        /* adjusted pressed tone */
+}
 
     #password-error {
       color: #d33;
