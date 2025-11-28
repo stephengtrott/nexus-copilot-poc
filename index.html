@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nexus Co-Pilot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #ffffff;
+    }
+
+    /* Password screen layout */
+    #password-screen {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+    }
+
+    #password-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 220px;
+    }
+
+    #password-input,
+    #password-form button {
+      padding: 10px 12px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #d0d4dc;
+      box-sizing: border-box;
+    }
+
+    #password-input:focus {
+      outline: none;
+      border-color: #4a8cff;
+      box-shadow: 0 0 0 1px rgba(74, 140, 255, 0.2);
+    }
+
+    #password-form button {
+      cursor: pointer;
+      background: #111827;
+      color: #ffffff;
+      border-color: #111827;
+    }
+
+    #password-form button:hover {
+      filter: brightness(1.05);
+    }
+
+    #password-error {
+      color: #dc2626;
+      font-size: 12px;
+      min-height: 14px;
+      margin: 0;
+    }
+
+    /* App screen with full viewport iframe */
+    #app-screen.hidden {
+      display: none;
+    }
+
+    #app-screen {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #chat {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Password Screen -->
+  <div id="password-screen">
+    <form id="password-form">
+      <input
+        id="password-input"
+        type="password"
+        placeholder="Password"
+        autocomplete="current-password"
+        autofocus
+      />
+      <button type="submit">Enter</button>
+      <p id="password-error"></p>
+    </form>
+  </div>
+
+  <!-- App Screen - only iframe -->
+  <div id="app-screen" class="hidden">
+    <iframe
+    src="https://www.chatbase.co/chatbot-iframe/Mrw2_1-uFFkSRItDoiIY0"
+    width="100%"
+    style="height: 100%; min-height: 700px"
+    frameborder="0"
+  ></iframe>
+  </div>
+
+  <script>
+    // Set your password here
+    const PASSWORD = "staycurious";
+
+    const passwordScreen = document.getElementById("password-screen");
+    const appScreen = document.getElementById("app-screen");
+    const passwordForm = document.getElementById("password-form");
+    const passwordInput = document.getElementById("password-input");
+    const passwordError = document.getElementById("password-error");
+
+    function unlock() {
+      passwordScreen.style.display = "none";
+      appScreen.classList.remove("hidden");
+    }
+
+    passwordForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (passwordInput.value === PASSWORD) {
+        passwordError.textContent = "";
+        unlock();
+      } else {
+        passwordError.textContent = "Incorrect password.";
+        passwordInput.value = "";
+        passwordInput.focus();
+      }
+    });
+  </script>
+
+</bo
+::contentReference[oaicite:0]{index=0}
