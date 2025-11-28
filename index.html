@@ -6,23 +6,13 @@
   <title>Nexus Co-Pilot</title>
 
   <style>
-    /* Center the iframe and limit its width */
-    .iframe-wrapper {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 1rem;
-      box-sizing: border-box;
-      display: none; /* hidden until password is correct */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
     }
 
-    iframe {
-      width: 100%;
-      height: 100vh;        /* Fills full viewport height */
-      min-height: 700px;    /* Safety fallback for tall content */
-      border: 0;
-    }
-
-    /* Minimal password wrapper */
+    /* Password screen – minimal styling */
     #password-screen {
       max-width: 300px;
       margin: 20vh auto 0 auto;
@@ -32,30 +22,4 @@
     #password-error {
       color: red;
       display: none;
-      margin-top: 0.5rem;
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- Password prompt -->
-  <div id="password-screen">
-    <p>Please enter the password</p>
-    <input id="password-input" type="password" />
-    <button id="password-submit">Enter</button>
-    <div id="password-error">Incorrect password</div>
-  </div>
-
-  <!-- Chatbot iframe -->
-  <div class="iframe-wrapper" id="chat-container">
-    <iframe 
-      src="https://www.chatbase.co/chatbot-iframe/Mrw2_1-uFFkSRItDoiIY0">
-    </iframe>
-  </div>
-
-  <script>
-    const PASSWORD = "staycurious";
-
-    const input = document.getElementById("password-input");
-    const button = document.getElementById("password-sub
+      margin-to
