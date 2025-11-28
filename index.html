@@ -2,105 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nexus Co-Pilot</title>
 
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #f8f8f8;
-      font-family: system-ui, sans-serif;
-    }
-
-    /* Password screen */
-    #password-screen {
-      padding: 4rem 2rem;
-      max-width: 400px;
-      margin: 10vh auto;
-      text-align: center;
-    }
-
-    #password-input {
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-      width: 100%;
-      margin-top: 1rem;
-      box-sizing: border-box;
-    }
-
-    #password-submit {
-      margin-top: 1rem;
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-      width: 100%;
-      cursor: pointer;
-    }
-
-    #password-error {
-      color: red;
-      margin-top: 1rem;
-      display: none;
-      font-size: 0.875rem;
-    }
-
-    /* Chatbot container */
+    /* Keep layout simple and centered */
     .iframe-wrapper {
-      width: 100%;
-      padding: 2rem;
-      box-sizing: border-box;
+      max-width: 800px;
       margin: 0 auto;
-      max-width: 800px; /* Hard max-width */
-      display: none; /* Hidden until password is correct */
+      padding: 1rem;
+      box-sizing: border-box;
+      display: none; /* hidden until password is correct */
     }
 
     iframe {
       width: 100%;
       min-height: 700px;
-      border: none;
+      border: 0;
+    }
+
+    /* Minimal password wrapper */
+    #password-screen {
+      max-width: 300px;
+      margin: 20vh auto 0 auto;
+      text-align: center;
+    }
+
+    #password-error {
+      color: red;
+      display: none;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Password Gate -->
+  <!-- Password prompt -->
   <div id="password-screen">
-    <h2>Enter Password</h2>
-    <input id="password-input" type="password" placeholder="Password" />
-    <button id="password-submit">Continue</button>
-    <div id="password-error">Incorrect password, please try again.</div>
+    <p>Please enter the password</p>
+    <input id="password-input" type="password" />
+    <button id="password-submit">Enter</button>
+    <div id="password-error">Incorrect password</div>
   </div>
 
-  <!-- Chatbase iframe container -->
+  <!-- Chatbot iframe -->
   <div class="iframe-wrapper" id="chat-container">
-    <iframe
-      src="https://www.chatbase.co/chatbot-iframe/Mrw2_1-uFFkSRItDoiIY0"
-      frameborder="0"
-    ></iframe>
+    <iframe 
+      src="https://www.chatbase.co/chatbot-iframe/Mrw2_1-uFFkSRItDoiIY0">
+    </iframe>
   </div>
 
   <script>
-    const correctPassword = "staycurious";
-    const input = document.getElementById("password-input");
-    const submit = document.getElementById("password-submit");
-    const error = document.getElementById("password-error");
-    const wrapper = document.getElementById("chat-container");
-    const passwordScreen = document.getElementById("password-screen");
+    const PASSWORD = "staycurious";
 
-    submit.addEventListener("click", () => {
-      if (input.value.trim() === correctPassword) {
-        passwordScreen.style.display = "none";
-        wrapper.style.display = "block";
+    const input = document.getElementById("password-input");
+    const button = document.getElementById("password-submit");
+    const error = document.getElementById("password-error");
+    const screen = document.getElementById("password-screen");
+    const iframeWrapper = document.getElementById("chat-container");
+
+    function checkPassword() {
+      if (input.value === PASSWORD) {
+        screen.style.display = "none";
+        iframeWrapper.style.display = "block";
       } else {
         error.style.display = "block";
       }
-    });
+    }
+
+    button.addEventListener("click", checkPassword);
 
     input.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        submit.click();
-      }
+      if (e.key === "Enter") checkPassword();
     });
   </script>
 
