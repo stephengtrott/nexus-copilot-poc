@@ -6,7 +6,7 @@
   <title>Nexus Co-Pilot</title>
 
   <style>
-    /* Keep layout simple and centered */
+    /* Center the iframe and limit its width */
     .iframe-wrapper {
       max-width: 800px;
       margin: 0 auto;
@@ -17,7 +17,8 @@
 
     iframe {
       width: 100%;
-      min-height: 700px;
+      height: 100vh;        /* Fills full viewport height */
+      min-height: 700px;    /* Safety fallback for tall content */
       border: 0;
     }
 
@@ -57,26 +58,4 @@
     const PASSWORD = "staycurious";
 
     const input = document.getElementById("password-input");
-    const button = document.getElementById("password-submit");
-    const error = document.getElementById("password-error");
-    const screen = document.getElementById("password-screen");
-    const iframeWrapper = document.getElementById("chat-container");
-
-    function checkPassword() {
-      if (input.value === PASSWORD) {
-        screen.style.display = "none";
-        iframeWrapper.style.display = "block";
-      } else {
-        error.style.display = "block";
-      }
-    }
-
-    button.addEventListener("click", checkPassword);
-
-    input.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") checkPassword();
-    });
-  </script>
-
-</body>
-</html>
+    const button = document.getElementById("password-sub
