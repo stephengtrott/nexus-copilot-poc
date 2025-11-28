@@ -51,29 +51,28 @@
       border-color: #4a74ff;
     }
 
+    /* VERSION 1 — Button Styles */
     .button-modern {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  background: #1B7498;        /* static */
-  color: white;
-  font-size: 1rem;
-  font-weight: 500;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      background: #1B7498;      /* static */
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
 
-/* Hover: slightly lighter + brighter */
-.button-modern:hover {
-  background: #218ABD;        /* adjusted hover tone */
-}
+    .button-modern:hover {
+      background: #218ABD;      /* hover */
+    }
 
-/* Active/Click: slightly darker + deeper */
-.button-modern:active {
-  background: #165C77;        /* adjusted pressed tone */
-}
+    .button-modern:active {
+      background: #165C77;      /* pressed */
+    }
 
     #password-error {
       color: #d33;
@@ -82,22 +81,28 @@
       font-size: 0.9rem;
     }
 
-    /* Chatbot container */
+    /* Chatbot area */
     #chat-container {
-      display: none; 
+      display: none;
     }
 
     .iframe-wrapper {
       max-width: 800px;
       margin: 0 auto;
-      padding: 0.5rem;
+      padding: 0;                 /* removed padding for no gaps */
       box-sizing: border-box;
+    }
+
+    #iframe-container {
+      border-radius: 12px;
+      overflow: hidden;           /* ensures rounded corners apply to iframe */
     }
 
     iframe {
       width: 100%;
-      height: 100vh;
+      height: 100vh;              /* full viewport height */
       border: 0;
+      display: block;
     }
   </style>
 </head>
@@ -115,7 +120,9 @@
   <!-- Chatbot iframe -->
   <div id="chat-container">
     <div class="iframe-wrapper">
-      <iframe src="https://www.chatbase.co/chatbot-iframe/Mrw2_1-uFFkSRItDoiIY0"></iframe>
+      <div id="iframe-container">
+        <iframe src="https://www.chatbase.co/chatbot-iframe/Mrw2_1-uFFkSRItDoiIY0"></iframe>
+      </div>
     </div>
   </div>
 
